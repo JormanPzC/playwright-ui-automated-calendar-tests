@@ -1,3 +1,5 @@
+[![Deployment Pipeline](https://github.com/JormanPzC/playwright-ui-automated-calendar-tests/actions/workflows/master-deployment-pipeline.yml/badge.svg)](https://github.com/JormanPzC/playwright-ui-automated-calendar-tests/actions/workflows/master-deployment-pipeline.yml)
+
 # Calendar Automated UI Tests
 > Automatic UI tests for a calendar in a web app. The tested web page consists of two calendars that visually display the days between 2 selected dates.
 
