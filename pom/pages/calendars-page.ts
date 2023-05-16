@@ -66,7 +66,7 @@ export class CalendarPage {
 		}
 
 		//The year received is not the same that the year displayed in the calendars?
-		if( yearReceived != parseInt(yearSelected) ){
+		if ( yearReceived != parseInt(yearSelected) ){
 			//Then change the year selected using the year picker. 
 			await this.selectYear(yearReceived);
 			//Update the values because are neccesary for validations.
@@ -77,7 +77,7 @@ export class CalendarPage {
 		}
 
 		//The month received is not one of the months displayed in the calendars?
-		if( monthReceived.abbrName != currentMonthFirstCalendar?.month.abbrName && monthReceived.abbrName != currentMonthSecondCalendar?.month.abbrName ){
+		if ( monthReceived.abbrName != currentMonthFirstCalendar?.month.abbrName && monthReceived.abbrName != currentMonthSecondCalendar?.month.abbrName ){
 			//Then change the month selected using the month picker.
 			await this.selectMonth(monthReceived.fullName);
 			//Update the values because are neccesary for validations.
@@ -153,7 +153,7 @@ export class CalendarPage {
 	* @param expectedEndDate - Second date clicked in one of the calendars.
 	*/
 	async compareRangeInputDatesWithClickedDates(expectedStartDate: Date, expectedEndDate: Date): Promise<void> {
-		if(expectedStartDate <= expectedEndDate){
+		if ( expectedStartDate <= expectedEndDate ){
 			await expect(this.firstDateInputDisplayLocator).toHaveValue(this.buildInputDate(expectedStartDate));
 			await expect(this.secondDateInputDisplayLocator).toHaveValue(this.buildInputDate(expectedEndDate));
 		} else {

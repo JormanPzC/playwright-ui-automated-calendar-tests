@@ -39,10 +39,10 @@ function randomUpperDate(): Date {
  */
 function randomUnderMonthDate(): Date {
 	const date: Date = new Date();
-	const daysInPreviosMonth = new Date(date.getUTCFullYear(), date.getUTCMonth(), 0).getDate();
+	const daysInPreviousMonth = new Date(date.getUTCFullYear(), date.getUTCMonth(), 0).getDate();
 	date.setMonth(date.getUTCMonth()-1);
 	date.setDate(1);//Setting the date to the first day of the previous month
-	const randomDays = randomIntFromInterval(1, daysInPreviosMonth);
+	const randomDays = randomIntFromInterval(1, daysInPreviousMonth);
 	return addDays(date, randomDays);
 
 }
