@@ -59,12 +59,12 @@ test.describe('Test Suite - Main TC: Ensures the basic functionality for selecti
 	test('TC003: "Start date" = random day in the previous month AND "End date" = Start date + 5', async ({ page }) => {
 		const calendarPage = new CalendarPage(page);
 	
-		//GIVEN "Random day in the future" as Start date
+		//GIVEN "Random day in the previous month" as Start date
 		const expectedStartDate: Date = randomUnderMonthDate();
 		console.log("expectedStartDate", expectedStartDate);
 	
 		//AND "Start day + 5" as End date.
-		const expectedEndDate: Date = addDays(expectedStartDate, -5);
+		const expectedEndDate: Date = addDays(expectedStartDate, 5);
 		console.log("expectedEndDate", expectedEndDate);
 	
 		//WHEN selecting these days in the calendars.

@@ -54,40 +54,42 @@ export class CalendarPage {
 		//Getting the months and years of the first and second calendars.
 		let firstCalendarMonthYear: string = await this.firstCalendarMonthYearLocator.innerText();//E.g value: "Jan 2023"
 		let currentMonthFirstCalendar = GET_MONTH_BY_ABBRNAME(firstCalendarMonthYear.substring(0, 3));
-		
 		let secondCalendarMonthYear:string = await this.secondCalendarMonthYearLocator.innerText();//E.g value: "Feb 2023"
 		let currentMonthSecondCalendar = GET_MONTH_BY_ABBRNAME(secondCalendarMonthYear.substring(0, 3));
-
 		let monthYearSelected: string = firstCalendarMonthYear;
 		let yearSelected: string  = monthYearSelected.substring(4);
 
 		if ( !this.isYearInValidRange( yearReceived ) ){
 			console.log("Failure - Year displayed in first calendar is out of valid range.");
+
 		}
 
 		//The year received is not the same that the year displayed in the calendars?
 		if ( yearReceived != parseInt(yearSelected) ){
 			//Then change the year selected using the year picker. 
 			await this.selectYear(yearReceived);
+
 			//Update the values because are neccesary for validations.
 			firstCalendarMonthYear = await this.firstCalendarMonthYearLocator.innerText();
 			secondCalendarMonthYear = await this.secondCalendarMonthYearLocator.innerText();
 			monthYearSelected = firstCalendarMonthYear;
 			yearSelected = monthYearSelected.substring(4);
+
 		}
 
 		//The month received is not one of the months displayed in the calendars?
-		if ( monthReceived.abbrName != currentMonthFirstCalendar?.month.abbrName && monthReceived.abbrName != currentMonthSecondCalendar?.month.abbrName ){
+		//The second part of the validation is for the case when in the first calendar the month is December and the second calendar the month is January of the next year.
+		if ( (monthReceived.abbrName != currentMonthFirstCalendar?.month.abbrName && monthReceived.abbrName != currentMonthSecondCalendar?.month.abbrName) || (monthReceived.abbrName === currentMonthSecondCalendar?.month.abbrName && yearReceived.toString() != secondCalendarMonthYear.substring(4) ) ){
 			//Then change the month selected using the month picker.
 			await this.selectMonth(monthReceived.fullName);
+
 			//Update the values because are neccesary for validations.
 			firstCalendarMonthYear = await this.firstCalendarMonthYearLocator.innerText();
 			currentMonthFirstCalendar = GET_MONTH_BY_ABBRNAME(firstCalendarMonthYear.substring(0, 3));
-		
 			secondCalendarMonthYear = await this.secondCalendarMonthYearLocator.innerText();
 			currentMonthSecondCalendar = GET_MONTH_BY_ABBRNAME(secondCalendarMonthYear.substring(0, 3));
-
 			monthYearSelected = await this.firstCalendarMonthYearLocator.innerText();
+
 		}
 
 		const monthYearReceived: string = monthReceived.abbrName + " " + yearReceived;
@@ -101,8 +103,10 @@ export class CalendarPage {
 		} else if ( monthYearReceived == secondCalendarMonthYear ){
 			this.dayInCalendarLocator = await this.getDayInCalendarLocator(dayReceived.toString(), 2);
 			await this.dayInCalendarLocator.click();
+
 		} else {
 			throw new Error (`Failure - Day in the date ${date} was not found in neither calendar.`);
+
 		}
 
 	}
@@ -140,9 +144,11 @@ export class CalendarPage {
 		if (isYearValid) {
 			await this.yearPickerLocator.click();
 			await this.yearPickerLocator.selectOption(year.toString());
+
 		} else {
 			console.log(`Failure - The year ${year} received is out the valid range.`);
 			throw new Error (`Failure - The year ${year} received is out the valid range.`);
+
 		}
 
 	}
@@ -156,9 +162,11 @@ export class CalendarPage {
 		if ( expectedStartDate <= expectedEndDate ){
 			await expect(this.firstDateInputDisplayLocator).toHaveValue(this.buildInputDate(expectedStartDate));
 			await expect(this.secondDateInputDisplayLocator).toHaveValue(this.buildInputDate(expectedEndDate));
+
 		} else {
 			await expect(this.firstDateInputDisplayLocator).toHaveValue(this.buildInputDate(expectedEndDate));
 			await expect(this.secondDateInputDisplayLocator).toHaveValue(this.buildInputDate(expectedStartDate));
+
 		}
 
 	}
