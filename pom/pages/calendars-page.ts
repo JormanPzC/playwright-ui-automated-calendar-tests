@@ -83,7 +83,7 @@ export class CalendarPage {
 			//Then change the month selected using the month picker.
 			await this.selectMonth(monthReceived.fullName);
 
-			//Update the values because are neccesary for validations.
+			//Update the values because are necessary for validations.
 			firstCalendarMonthYear = await this.firstCalendarMonthYearLocator.innerText();
 			currentMonthFirstCalendar = GET_MONTH_BY_ABBRNAME(firstCalendarMonthYear.substring(0, 3));
 			secondCalendarMonthYear = await this.secondCalendarMonthYearLocator.innerText();

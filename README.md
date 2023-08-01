@@ -11,14 +11,14 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Launch](#launch)
-* [Other Recommended Commands](#other-recomended-comands)
+* [Other Recommended Commands](#other-recomended-commands)
 * [Reporter Screenshots](#reporter-screenshots)
 * [Report of all test](#all-test-report)
 * [Detail of one test](#detail-test-report)
 * [Project Status](#project-status)
 
 ## General Info
-This proyect is about automated UI tests with Playwright and Typescript, using the design pattern POM (page object model). This proyect include EsLint for linting. The system tested is a calendar web app in which 2 dates can be selected using 1 or two calendars displayed.
+This project is about automated UI tests with Playwright and Typescript, using the design pattern POM (page object model). This project include EsLint for linting. The system tested is a calendar web app in which 2 dates can be selected using one or two calendars displayed.
 
 
 ## Technologies
@@ -37,7 +37,7 @@ Clone this repo to desktop (or other place) and run `npm install` to install all
 ## Launch
 After you clone this repo to your desktop (or other place), go to its root directory and run npm install to install its dependencies.
 
-Once the dependencies are installed, you can run some of this commands:
+Once the dependencies are installed, you can run some of these commands:
 
 - `npm run test`: it is used to run the "npx playwright test calendarTest.spec.ts" command (this is configured in package.json file), which will execute all the tests described in the "calendarTest.spec.ts" file in the Chrome, Firefox and Webkit browsers.
 - `npx playwright test calendarTest.spec.ts --headed`: it is used to run tests with the browser in headed mode.
